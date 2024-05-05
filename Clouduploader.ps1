@@ -8,12 +8,18 @@ $FilePathTest = Test-path -Path $FilePath
 
 if($FilePathTest){
     Write-Host "File exists" -f Cyan
+    
     Connect-AzAccount
+
+# Set container name storage account variables 
+    $ContainerName = 'container1'
+    $ctx = New-AzStorageContext -StorageAccountName 'clouduploadercli' -UseConnectedAccount
+
     $Blob1HT = @{
-        File             = 'D:\Images\Image001.jpg'
+        File             = $FilePath
         Container        = $ContainerName
-        Blob             = "Image001.jpg"
-        Context          = $Context
+        Blob             = "test.txt"
+        Context          = $ctx
         StandardBlobTier = 'Hot'
       }
       Set-AzStorageBlobContent @Blob1HT
