@@ -25,6 +25,8 @@ if($FilePathTest){
       Set-AzStorageBlobContent @Blob1HT
     Exit-PSSession
 }
+
+#Need to implement a user input validation function instead of abruptly ending
 else { 
     Write-Host "File not found" -f Red
     Exit-PSSession
